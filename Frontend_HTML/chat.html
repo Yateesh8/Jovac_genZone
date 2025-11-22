@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>genZone Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div class="topbar">
+    <button id="hamburgerToggle" class="hamburger">☰</button>
+    <h2>genZone</h2>
+  </div>
+
+  <!-- Profile Sidebar -->
+  <div class="profile-sidebar" id="profileSidebar" style="display: none">
+    <div class="add-friend-box" style="margin-bottom: 18px">
+      <input type="text" id="friendIdInput" placeholder="Enter username" style="padding: 5px; width: 120px" />
+      <button id="addFriendBtn" style="padding: 5px 10px; margin-left: 5px; cursor: pointer">Add</button>
+    </div>
+
+    <div class="user-info">
+      <span id="sidebarUsername" style="font-weight: bold"></span>
+    </div>
+
+    <div class="friend-list">
+      <ul id="sidebarFriends"></ul>
+    </div>
+
+    <button id="sidebarLogout" style="margin-top: 16px">Logout</button>
+  </div>
+
+  <div class="chat-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div style="margin: 18px 0 8px 0; font-weight: bold; font-size: 19px; color: #000">Chats</div>
+
+      <!-- Search -->
+      <div class="search-friends-box" style="margin-bottom: 10px">
+        <input type="text" id="searchFriendsInput" placeholder="Search friends..."
+          style="padding: 7px 10px; width: 90%; border-radius: 7px; border: 1px solid #bdbdbd;" />
+      </div>
+
+      <div id="userList" class="user-list"></div>
+    </div>
+
+    <!-- Chat + Story Section -->
+    <div style="flex: 1; display: flex; flex-direction: column;">
+
+      <!-- Chat Form (WhatsApp style) -->
+      <form id="chatForm" enctype="multipart/form-data"
+        style="display: flex; align-items: center; gap: 8px; margin: 10px 10px 0 10px;">
+        <input type="text" name="message" id="chatMessageInput" placeholder="Type message..."
+          style="flex: 1; padding: 8px 12px; border-radius: 6px; border: 1px solid #ddd; font-size: 16px;" />
+
+        <input type="file" name="media" accept="image/*,video/*" id="mediaInput" style="width: 140px;" />
+
+        <button type="submit"
+          style="padding: 8px 18px; border-radius: 6px; background: #25d366; color: #fff; font-weight: bold; border: none; cursor: pointer; font-size: 16px;">Send</button>
+      </form>
+
+      <!-- Story Upload -->
+      <form id="storyForm" enctype="multipart/form-data"
+        style="display: flex; align-items: center; gap: 8px; margin: 10px 10px 0 10px;">
+        <input type="file" name="media" accept="image/*,video/*" id="storyMediaInput" style="width: 140px;" />
+        <input type="text" name="caption" placeholder="Add a caption"
+          style="flex: 1; padding: 8px 10px; border-radius: 5px; border: 1px solid #ddd;" />
+        <button type="submit"
+          style="padding: 7px 16px; border-radius: 6px; background: #007bff; color: #fff; font-weight: bold; border: none; cursor: pointer; font-size: 15px;">Upload
+          Story</button>
+      </form>
+
+      <!-- Story Feed -->
+      <div id="storyFeed" style="margin: 12px 12px 0 12px;"></div>
+
+      <!-- Chat Area -->
+      <div class="chat-area" style="flex: 1; display: flex; flex-direction: column; margin: 12px;">
+        <div class="chat-header">
+          <h3 id="chatWith" style="font-weight: bold">Select a user to chat</h3>
+        </div>
+        <div class="chat-messages" id="chatMessages" style="flex: 1; overflow-y: auto;"></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="script.js" defer></script>
+</body>
+
+</html>
